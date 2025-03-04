@@ -7,24 +7,24 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui';
 
-import HomePage from './home-page';
-
-export default function Page() {
+const PostsLayout = ({ children }: React.PropsWithChildren) => {
   return (
     <main className="relative">
       <Breadcrumb className="absolute top-20 left-30 z-10">
         <BreadcrumbList className="text-2xl">
           <BreadcrumbItem>
-            <BreadcrumbPage>Home</BreadcrumbPage>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/posts">Blog</BreadcrumbLink>
+            <BreadcrumbPage>Blog</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
-      <HomePage />
+      {children}
     </main>
   );
-}
+};
+
+export default PostsLayout;

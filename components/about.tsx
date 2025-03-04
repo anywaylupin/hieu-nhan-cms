@@ -1,5 +1,3 @@
-'use client';
-
 import resume from '@/content/resume';
 import { TwoColumn } from './common';
 import Image from 'next/image';
