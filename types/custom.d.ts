@@ -1,9 +1,11 @@
-declare interface Expense {
-  id: string;
-  amount: number;
-  description: string;
-  category: string;
-  date: string;
-}
+declare type TNotionBlogPage = any; //TODO: Define your own type
 
-declare type ExpenseFormData = Omit<Expense, 'id'>;
+declare type TNotionBlogResult = any; //TODO: Define your own type
+
+declare type TNotionBlogGetBlogResponse = {
+  result: TResult;
+};
+
+declare type BlogRequest = {
+  params: Promise<{ id: string }>;
+};

@@ -1,16 +1,12 @@
-const normalizeId = (id: string) => {
-  if (!id) return id;
-  if (id.length === 36) return id;
-  if (id.length !== 32) {
-    throw new Error(
-      `Invalid NOTION_DATABASE_ID: ${id} should be 32 characters long. Info here https://github.com/ijjk/notion-blog#getting-blog-index-and-token`
-    );
-  }
-
-  return `${id.substring(0, 8)}-${id.substring(8, 4)}-${id.substring(12, 4)}-${id.substring(16, 4)}-${id.substring(20)}`;
-};
-
+export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? '';
 export const NOTION_TOKEN = process.env.NOTION_TOKEN;
-export const NOTION_DATABASE_ID = normalizeId(process.env.NOTION_DATABASE_ID);
+export const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 export const BLUR_FADE_DELAY = 0.01;
+
+export const DEFAULT_PAGE_SIZE = 100;
+export const DEFAULT_PAGE_INDEX = 1;
+
+export const ERROR_CODE = Object.freeze({
+  not_found_the_resource: 'not_found_the_resource'
+});
