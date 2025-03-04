@@ -1,41 +1,43 @@
-import { DEFAULT_PAGE_SIZE, ERROR_CODE, NOTION_DATABASE_ID, NOTION_TOKEN } from './constants';
-import { PageObjectResponse, QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
-
 import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
-const notion = new Client({ auth: NOTION_TOKEN });
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const n2m = new NotionToMarkdown({ notionClient: notion });
+export const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
-export const getBlogPosts = async (config: {
-  filter: QueryDatabaseParameters['filter'];
-  pageSize?: number;
-  nextCursor?: string;
-}) => {
-  const { filter, nextCursor } = config;
-  const { pageSize } = config;
+export const n2m = new NotionToMarkdown({ notionClient: notion });
 
-  const response = await notion.databases.query({
-    database_id: NOTION_DATABASE_ID,
-    filter,
-    page_size: pageSize ?? DEFAULT_PAGE_SIZE,
-    start_cursor: nextCursor
-  });
+export const getPostList = async () => {
+  try {
+    const response = await fetch(NEXT_PUBLIC_BASE_URL + '/api/posts');
 
-  return response.results as CustomDatabaseObjectResponse[];
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const data: CustomPageObjectResponse[] = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    return [];
+  }
 };
 
-export const getPageById = async (id: number) => {
-  const posts = await getBlogPosts({ filter: { and: [{ property: 'ID', unique_id: { equals: id } }] }, pageSize: 1 });
-  const mdBlocks = await n2m.pageToMarkdown(posts[0].id);
-  const mdString = n2m.toMarkdownString(mdBlocks);
+export const getPostById = async (id: string) => {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/api/posts/${id}`, { method: 'GET' });
 
-  if (posts.length === 0) {
-    throw new Error(ERROR_CODE.not_found_the_resource);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const data: CustomPageMarkdownResponse = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-
-  return mdString;
 };
 
 type DatabasePropertyConfigResponse = PageObjectResponse['properties'][string];
@@ -45,7 +47,7 @@ type ExtractDatabasePropertyConfig<T extends DatabasePropertyConfigResponse['typ
   { type: T }
 >;
 
-export type CustomDatabaseObjectResponse = PageObjectResponse & {
+export type CustomPageObjectResponse = PageObjectResponse & {
   properties: {
     ID: ExtractDatabasePropertyConfig<'unique_id'>;
     Date: ExtractDatabasePropertyConfig<'date'>;
@@ -54,3 +56,5 @@ export type CustomDatabaseObjectResponse = PageObjectResponse & {
     Tags: ExtractDatabasePropertyConfig<'multi_select'>;
   };
 };
+
+export type CustomPageMarkdownResponse = CustomPageObjectResponse & { markdown: { parent: string } };

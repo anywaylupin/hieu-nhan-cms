@@ -50,9 +50,6 @@ importers:
       react-markdown:
         specifier: ^10.0.1
         version: 10.0.1(@types/react@19.0.10)(react@19.0.0-rc-66855b96-20241106)
-      react-notion:
-        specifier: ^0.10.0
-        version: 0.10.0(react@19.0.0-rc-66855b96-20241106)
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.0.2
@@ -1813,12 +1810,6 @@ packages:
     peerDependencies:
       '@types/react': '>=18'
       react: '>=18'
-
-  react-notion@0.10.0:
-    resolution: {integrity: sha512-i5lVAxzSs7GnTpIbKtivPQWxGZiKCO5xmCmMJyn6F91y8X1IIJqnypkK+31F2acb1l1Qd8Yv0ktuvXwz9g49NQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>=16'
 
   react@19.0.0-rc-66855b96-20241106:
     resolution: {integrity: sha512-klH7xkT71SxRCx4hb1hly5FJB21Hz0ACyxbXYAECEqssUjtJeFUAaI2U1DgJAzkGEnvEm3DkxuBchMC/9K4ipg==}
@@ -4051,11 +4042,6 @@ snapshots:
       vfile: 6.0.3
     transitivePeerDependencies:
       - supports-color
-
-  react-notion@0.10.0(react@19.0.0-rc-66855b96-20241106):
-    dependencies:
-      prismjs: 1.29.0
-      react: 19.0.0-rc-66855b96-20241106
 
   react@19.0.0-rc-66855b96-20241106: {}
 
