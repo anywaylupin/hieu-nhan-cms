@@ -2,27 +2,27 @@
 
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
-import { forwardRef, useRef, useEffect, useState } from 'react';
+import { forwardRef, useRef, useEffect, useState, Children } from 'react';
 import { Button, ButtonProps } from '../ui';
 
 export const HorizontalScroll = forwardRef<HTMLDivElement, React.PropsWithChildren<{ className?: string }>>(
   ({ className, children }, ref) => {
+    const length = Children.count(children) - 1;
     const scrollRef = useRef<HTMLDivElement>(null);
     const [scrollWidth, setScrollWidth] = useState(0);
 
     useEffect(() => {
       const handleResize = () => {
-        setScrollWidth(window.innerWidth);
+        setScrollWidth(window.innerWidth * length);
       };
 
-      setScrollWidth(window.innerWidth);
-
+      setScrollWidth(window.innerWidth * length);
       window.addEventListener('resize', handleResize);
 
       return () => {
         window.removeEventListener('resize', handleResize);
       };
-    }, []);
+    }, [children, length]);
 
     useEffect(() => {
       const handleWheel = (event: WheelEvent) => {
@@ -56,7 +56,6 @@ export const HorizontalScroll = forwardRef<HTMLDivElement, React.PropsWithChildr
     );
   }
 );
-
 HorizontalScroll.displayName = 'HorizontalScroll';
 
 interface ScrollButtonProps extends ButtonProps {

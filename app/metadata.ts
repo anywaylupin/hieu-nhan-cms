@@ -5,15 +5,15 @@ import resume from '@/content/resume';
 export const metadata: Metadata = {
   metadataBase: new URL(resume.domain),
   title: {
-    default: resume.shortname,
-    template: `%s | ${resume.shortname}`
+    default: resume.title,
+    template: `%s | ${resume.title}`
   },
   description: resume.description,
   openGraph: {
-    title: `${resume.shortname}`,
+    title: `${resume.title}`,
     description: resume.description,
     url: resume.domain,
-    siteName: `${resume.shortname}`,
+    siteName: `${resume.title}`,
     locale: 'en_US',
     type: 'website'
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 }
   },
-  twitter: { title: `${resume.name}`, card: 'summary_large_image' },
+  twitter: { title: `${resume.title}`, card: 'summary_large_image' },
   verification: {
     google: '',
     yandex: ''
