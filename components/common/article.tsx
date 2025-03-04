@@ -1,10 +1,10 @@
-import { CustomDatabaseObjectResponse, getPostProperties } from '@/lib/notion';
-
+import { CustomDatabaseObjectResponse } from '@/app/actions';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getPostProperties } from '@/lib/notion';
 
 export const Article = (props: CustomDatabaseObjectResponse) => {
-  const { image, description, title, content, date, tags } = getPostProperties(props);
+  const { image, description, title, date, tags } = getPostProperties(props);
 
   return (
     <article className="prose dark:prose-invert max-w-4xl py-6">
@@ -41,7 +41,6 @@ export const Article = (props: CustomDatabaseObjectResponse) => {
       )}
 
       {/* Article Content */}
-      <section className="mt-6">{content}</section>
 
       <hr className="my-6 border-gray-300 dark:border-gray-700" />
 

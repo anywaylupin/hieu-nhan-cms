@@ -1,6 +1,6 @@
 import { Article } from '@/components/common';
 import { cookies } from 'next/headers';
-import { getBlogPostById } from '@/lib/notion';
+import { getBlogPostById } from '@/app/actions';
 import { notFound } from 'next/navigation';
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {

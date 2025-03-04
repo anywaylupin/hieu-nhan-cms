@@ -1,9 +1,8 @@
-import { Badge, BlurFade } from '@/components/ui';
-
 import { BLUR_FADE_DELAY } from '@/lib/constants';
+import { BlurFade } from '@/components/ui';
 import { ExperienceCards } from '@/components/experience-cards';
 import { Header } from '@/components/common';
-import { ProjectCards } from '@/components/project-cards';
+import { SectionBlog } from '@/components/section-blog';
 import resume from '@/content/resume';
 
 const Home = () => (
@@ -30,24 +29,9 @@ const Home = () => (
         </BlurFade>
       </section>
 
-      <section id="projects" className="w-full space-y-12 pt-12">
-        <BlurFade delay={BLUR_FADE_DELAY * 11}>
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <div className="bg-foreground text-background inline-block rounded-lg px-3 py-1 text-sm">Projects</div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Explore my recent projects</h2>
-              <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                I have been involved in a diverse range of projects, spanning from basic websites to intricate web
-                applications. Here are some of my top picks.
-              </p>
-            </div>
-          </div>
-        </BlurFade>
-
-        <BlurFade className="grid grid-cols-1 gap-3 sm:grid-cols-2" delay={BLUR_FADE_DELAY * 12}>
-          <ProjectCards />
-        </BlurFade>
-      </section>
+      <BlurFade delay={BLUR_FADE_DELAY * 12}>
+        <SectionBlog />
+      </BlurFade>
     </main>
   </>
 );

@@ -1,3 +1,4 @@
+import 'react-notion-x/src/styles.css';
 import './globals.css';
 
 import { Geist, Geist_Mono } from 'next/font/google';

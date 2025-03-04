@@ -1,13 +1,14 @@
 'use client';
 
-import { CustomDatabaseObjectResponse, getPostProperties } from '@/lib/notion';
+import { getPostProperties } from '@/lib/notion';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const BlogPosts = ({ posts }: { posts: CustomDatabaseObjectResponse[] }) => {
+export const BlogPosts = ({ posts }: { posts: any }) => {
+  console.log(posts);
   return (
-    <div className="flex size-full flex-col space-y-6">
+    <div className="grid size-full grid-cols-2 gap-3">
       {posts
         .toSorted((a, b) => {
           const dateA = new Date(a.properties.Date.date?.start ?? a.created_time);
@@ -20,7 +21,7 @@ export const BlogPosts = ({ posts }: { posts: CustomDatabaseObjectResponse[] }) 
           return (
             <article
               key={post.id}
-              className="group flex flex-col overflow-hidden rounded-lg border bg-white shadow-sm transition hover:shadow-md md:grid md:grid-cols-[auto,1fr] dark:border-gray-800 dark:bg-gray-900"
+              className="group flex cursor-pointer flex-col overflow-hidden rounded-lg border bg-white shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
             >
               {/* Cover Image */}
               <div className="relative h-40 w-full md:h-auto md:w-48">
