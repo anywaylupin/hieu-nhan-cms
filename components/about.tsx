@@ -1,9 +1,10 @@
 'use client';
 
-export default function SectionTwo() {
+import { TwoColumn } from './common';
+
+export default function About() {
   return (
-    <section className="flex h-screen w-screen flex-shrink-0 flex-col items-start justify-center bg-white px-16">
-      <p className="text-lg">Portfolio Preview — 2023</p>
+    <TwoColumn>
       <h1 className="mt-4 text-4xl font-bold">
         Share your passion and drive for your field here. What is your unique point of view?
       </h1>
@@ -22,6 +23,6 @@ export default function SectionTwo() {
             </div>
           ))}
       </div>
-    </section>
+    </TwoColumn>
   );
 }

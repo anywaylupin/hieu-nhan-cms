@@ -1,12 +1,11 @@
-import HorizontalScrollLayout from '@/components/horizontal-scroll';
-import SectionOne from '@/components/hero';
-import SectionTwo from '@/components/section-two';
+import HomePage from './home-page';
 
 export default function Page() {
   return (
-    <HorizontalScrollLayout>
-      <SectionOne />
-      <SectionTwo />
-    </HorizontalScrollLayout>
+    <main className="relative">
+      <p className="absolute top-20 left-30 z-10 text-lg">Nhan Portfolio & Blog — {new Date().getFullYear()}</p>
+
+      <HomePage />
+    </main>
   );
 }

@@ -1,25 +1,19 @@
 import { IconArticle, IconBrandGithub, IconBrandLinkedin, IconHome, IconMail } from '@/components/icons';
 
 const resume = {
+  heading: "I'm Nhan",
+  subheading: (
+    <>
+      A senior Economics major at <b className="text-fulbright bg-fulbright-foreground">Fulbright University Vietnam</b>
+    </>
+  ),
+  aboutTitle: "My ultimate goal is to create a societal impact as a way to give back for what I've received.",
   name: 'Nhân',
   shortname: 'Hieu Nhan',
   fullname: 'Nguyễn Thị Hiếu Nhân',
   initials: 'Nhân',
-  title: 'Senior Economics Major',
   domain: 'https://hieunhan.vercel.app',
   avatar: '/images/me.png',
-  greetings: (
-    <p>
-      <span className="inline-block text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-        Hi, I&apos;m Nhân
-      </span>
-      <br />
-      <span className="inline-block max-w-[600px] md:text-xl">
-        A senior Economics major at <b>Fulbright University Vietnam.</b> My ultimate goal is to create a societal impact
-        as a way to give back for what I've received.
-      </span>
-    </p>
-  ),
   description:
     "A senior Economics major at <b>Fulbright University Vietnam.</b> My ultimate goal is to create a societal impact as a way to give back for what I've received.",
   about:
