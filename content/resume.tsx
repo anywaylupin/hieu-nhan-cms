@@ -2,9 +2,10 @@ import { IconArticle, IconBrandGithub, IconBrandLinkedin, IconHome, IconMail } f
 
 const resume = {
   name: 'Nhân',
-  shortname: 'Nhân Nguyễn',
+  shortname: 'Hieu Nhan',
   fullname: 'Nguyễn Thị Hiếu Nhân',
   initials: 'Nhân',
+  title: 'Senior Economics Major',
   domain: 'https://hieunhan.vercel.app',
   avatar: '/images/me.png',
   greetings: (
