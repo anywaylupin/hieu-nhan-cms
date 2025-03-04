@@ -2,18 +2,33 @@
 
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
-import { forwardRef, useRef, useEffect } from 'react';
+import { forwardRef, useRef, useEffect, useState } from 'react';
 import { Button, ButtonProps } from '../ui';
 
 export const HorizontalScroll = forwardRef<HTMLDivElement, React.PropsWithChildren<{ className?: string }>>(
   ({ className, children }, ref) => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [scrollWidth, setScrollWidth] = useState(0);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setScrollWidth(window.innerWidth);
+      };
+
+      setScrollWidth(window.innerWidth);
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
     useEffect(() => {
       const handleWheel = (event: WheelEvent) => {
         event.preventDefault();
         scrollRef.current?.scrollTo({
-          left: scrollRef.current.scrollLeft + event.deltaY * (window.innerWidth / 200),
+          left: scrollRef.current.scrollLeft + event.deltaY * (scrollWidth / 200),
           behavior: 'smooth'
         });
       };
@@ -24,7 +39,7 @@ export const HorizontalScroll = forwardRef<HTMLDivElement, React.PropsWithChildr
       return () => {
         container?.removeEventListener('wheel', handleWheel);
       };
-    }, []);
+    }, [scrollWidth]);
 
     useEffect(() => {
       if (ref) {
@@ -34,7 +49,7 @@ export const HorizontalScroll = forwardRef<HTMLDivElement, React.PropsWithChildr
 
     return (
       <div ref={scrollRef} className={cn('flex h-screen w-screen items-center overflow-hidden', className)}>
-        <motion.div className="flex h-screen w-full" drag="x" dragConstraints={{ left: -window.innerWidth, right: 0 }}>
+        <motion.div className="flex h-screen w-full" drag="x" dragConstraints={{ left: -scrollWidth, right: 0 }}>
           {children}
         </motion.div>
       </div>

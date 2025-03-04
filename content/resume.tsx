@@ -1,23 +1,28 @@
 import { IconArticle, IconBrandGithub, IconBrandLinkedin, IconHome, IconMail } from '@/components/icons';
 
 const resume = {
-  heading: "I'm Nhan",
-  subheading: (
-    <>
-      A senior Economics major at <b className="text-fulbright bg-fulbright-foreground">Fulbright University Vietnam</b>
-    </>
-  ),
-  aboutTitle: "My ultimate goal is to create a societal impact as a way to give back for what I've received.",
+  hero: {
+    heading: "I'm Nhan",
+    subheading: (
+      <>
+        <p> A senior Economics major at</p>
+        <b className="text-fulbright bg-fulbright-foreground">Fulbright University Vietnam</b>
+      </>
+    ),
+    image: '/images/me-clear.png'
+  },
+  about: {
+    heading: "My ultimate goal is to create a societal impact as a way to give back for what I've received.",
+    subheading:
+      'I am enthusiastic about challenging myself through a variety of work experiences and am open to different fields to learn and develop my skills. Being a young woman living in a complex and rapidly changing world, I adopted the mission of contributing to the development and closing the gap of inequality among people. To achieve that mission, I urged myself to involve myself in experiencing knowledge and improving my skillset, and mindset in Sustainability Development.',
+    image: '/images/fbc-cv.jpg'
+  },
+
   name: 'Nhân',
   shortname: 'Hieu Nhan',
   fullname: 'Nguyễn Thị Hiếu Nhân',
   initials: 'Nhân',
   domain: 'https://hieunhan.vercel.app',
-  avatar: '/images/me.png',
-  description:
-    "A senior Economics major at <b>Fulbright University Vietnam.</b> My ultimate goal is to create a societal impact as a way to give back for what I've received.",
-  about:
-    'I am enthusiastic about challenging myself through a variety of work experiences and am open to different fields to learn and develop my skills. Being a young woman living in a complex and rapidly changing world, I adopted the mission of contributing to the development and closing the gap of inequality among people. To achieve that mission, I urged myself to involve myself in experiencing knowledge and improving my skillset, and mindset in Sustainability Development.',
   experience: [
     {
       title: 'Intern at Marketing and Communications Team',
