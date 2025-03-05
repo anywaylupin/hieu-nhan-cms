@@ -32,7 +32,7 @@ const Page = async () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Blog</BreadcrumbPage>
+            <BreadcrumbPage>My Works</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

@@ -26,7 +26,7 @@ const Page = async ({ params }: BlogRequest) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/posts">Blog</BreadcrumbLink>
+            <BreadcrumbLink href="/posts">My Works</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

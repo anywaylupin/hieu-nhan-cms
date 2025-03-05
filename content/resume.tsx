@@ -7,7 +7,7 @@ const resume = {
     heading: "I'm Nhan",
     subheading: (
       <>
-        <p> A senior Economics major at</p>
+        <p> Economics major, Applied Mathematics minor at </p>
         <b className="text-fulbright bg-fulbright-foreground">Fulbright University Vietnam</b>
       </>
     ),
