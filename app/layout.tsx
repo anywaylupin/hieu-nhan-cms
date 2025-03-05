@@ -13,7 +13,7 @@ export { metadata };
 const RootLayout = ({ children }: React.PropsWithChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn('bg-background text-primary antialiased', geistSans.className)}>
+      <body className={cn('bg-background text-primary h-dvh w-dvw antialiased', geistSans.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

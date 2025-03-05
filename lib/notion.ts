@@ -16,8 +16,8 @@ export const getPostList = async () => {
       throw new Error(`Error: ${response.statusText}`);
     }
 
-    const data: CustomPageObjectResponse[] = await response.json();
-    return data;
+    const data = await response.json();
+    return data.results as CustomPageObjectResponse[];
   } catch (error) {
     console.error('Error:', error);
     return [];
@@ -36,7 +36,30 @@ export const getPostById = async (id: string) => {
     return data;
   } catch (error) {
     console.error(error);
-    return null;
+    return {} as CustomPageMarkdownResponse;
+  }
+};
+
+export const getPostDetail = (post: CustomPageObjectResponse | CustomPageMarkdownResponse) => {
+  return {
+    id: post.properties.ID.unique_id.number,
+    title: post.properties.Title.title?.[0]?.plain_text ?? 'Untitled',
+    description: post.properties.Description.rich_text?.[0]?.plain_text,
+    published: post.properties.Published.checkbox,
+    date: post.properties.Date.date?.start ?? post.created_time,
+    tags: post.properties.Tags.multi_select.map((tag) => tag.name),
+    images: post.properties.Images.files
+  };
+};
+
+export const getPostImage = (image?: ExtractDatabasePropertyConfig<'files'>['files'][number]) => {
+  switch (image?.type) {
+    case 'external':
+      return { url: image.external.url, alt: image.name };
+    case 'file':
+      return { url: image.file.url, alt: image.name };
+    default:
+      return null;
   }
 };
 
@@ -50,10 +73,12 @@ type ExtractDatabasePropertyConfig<T extends DatabasePropertyConfigResponse['typ
 export type CustomPageObjectResponse = PageObjectResponse & {
   properties: {
     ID: ExtractDatabasePropertyConfig<'unique_id'>;
-    Date: ExtractDatabasePropertyConfig<'date'>;
-    Name: ExtractDatabasePropertyConfig<'title'>;
+    Title: ExtractDatabasePropertyConfig<'title'>;
+    Description: ExtractDatabasePropertyConfig<'rich_text'>;
     Published: ExtractDatabasePropertyConfig<'checkbox'>;
+    Date: ExtractDatabasePropertyConfig<'date'>;
     Tags: ExtractDatabasePropertyConfig<'multi_select'>;
+    Images: ExtractDatabasePropertyConfig<'files'>;
   };
 };
 

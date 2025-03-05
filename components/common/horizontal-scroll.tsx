@@ -28,7 +28,7 @@ export const HorizontalScroll = forwardRef<HTMLDivElement, React.PropsWithChildr
       const handleWheel = (event: WheelEvent) => {
         event.preventDefault();
         scrollRef.current?.scrollTo({
-          left: scrollRef.current.scrollLeft + event.deltaY * (scrollWidth / 200),
+          left: scrollRef.current.scrollLeft + event.deltaY * (scrollWidth / 400),
           behavior: 'smooth'
         });
       };

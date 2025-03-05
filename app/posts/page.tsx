@@ -1,41 +1,77 @@
-import { getPostList } from '@/lib/notion';
-import { formatDateLocalized } from '@/lib/utils';
+import {
+  BentoGrid,
+  BentoGridItem,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui';
+import { getPostDetail, getPostImage, getPostList } from '@/lib/notion';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { formatDateLocalized } from '@/lib/utils';
+import { Loader } from '@/components/common';
 
-const Blogs = async () => {
+const Page = async () => {
   const posts = await getPostList();
 
-  return !posts.length ? (
-    <div>loading...</div>
-  ) : (
-    posts.map(({ id, properties, cover, created_time }) => (
-      <Link key={id} href={`/posts/${properties.ID.unique_id.number}`} className="block">
-        <article className="max-w-sm rounded-lg border shadow-md">
-          {cover?.type === 'external' && (
-            <Image
-              width={600}
-              height={400}
-              className="aspect-video w-full rounded-t-lg"
-              src={cover.external.url}
-              alt={'Card image'}
-            />
-          )}
-          <div className="p-5">
-            <h5 className="mb-2 line-clamp-2 text-lg font-bold tracking-tight">
-              {properties.Name.title[0].plain_text || 'No title'}
-            </h5>
-            <time
-              className="text-sm text-gray-500 italic dark:text-gray-400"
-              dateTime={new Date(created_time).toISOString()}
-            >
-              {formatDateLocalized(new Date(created_time))}
-            </time>
-          </div>
-        </article>
-      </Link>
-    ))
+  if (!posts.length) {
+    return <p className="text-center text-gray-500">No posts available.</p>;
+  }
+
+  return (
+    <main className="relative flex flex-col gap-6 py-20">
+      <Breadcrumb className="relative pl-30">
+        <BreadcrumbList className="text-2xl">
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Blog</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+      <Suspense fallback={<Loader />}>
+        <BentoGrid>
+          {posts.map((post) => {
+            const { id, title, description, date, images } = getPostDetail(post);
+            const image = images?.[0] ? getPostImage(images[0]) : null;
+
+            return (
+              <Link key={id} href={`/posts/${id}`} className="block">
+                <BentoGridItem
+                  className="size-full"
+                  header={
+                    image && (
+                      <Image
+                        width={300}
+                        height={200}
+                        className="w-full rounded-sm"
+                        src={image.url}
+                        alt={image.alt || title}
+                      />
+                    )
+                  }
+                  title={title}
+                  description={
+                    <>
+                      <p>{description}</p>
+                      <time dateTime={new Date(date).toISOString()}>{formatDateLocalized(new Date(date))}</time>
+                    </>
+                  }
+                />
+              </Link>
+            );
+          })}
+        </BentoGrid>
+      </Suspense>
+    </main>
   );
 };
 
-export default Blogs;
+export default Page;
