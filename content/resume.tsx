@@ -1,6 +1,6 @@
 const resume = {
   title: 'Hieu Nhan',
-  description: 'My Personal Blog',
+  description: 'Economics major, Applied Mathematics minor at Fulbright University Vietnam.',
   domain: 'https://hieunhan.vercel.app',
   hero: {
     heading: "I'm Nhan",
