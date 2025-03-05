@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 export const BentoGrid = ({ className, children, ...rest }: React.ComponentProps<'div'>) => {
   return (
-    <div className={cn('mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-3', className)} {...rest}>
+    <div className={cn('mx-auto grid grid-cols-1 gap-4 md:grid-cols-3 xl:max-w-7xl', className)} {...rest}>
       {children}
     </div>
   );

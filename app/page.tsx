@@ -12,7 +12,7 @@ import HomePage from './home-page';
 export default function Page() {
   return (
     <main className="relative">
-      <Breadcrumb className="absolute top-20 left-30 z-10">
+      <Breadcrumb className="absolute top-20 left-[4%] z-10">
         <BreadcrumbList className="text-2xl">
           <BreadcrumbItem>
             <BreadcrumbPage>Home</BreadcrumbPage>

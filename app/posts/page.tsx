@@ -23,7 +23,7 @@ const Page = async () => {
 
   return (
     <main className="relative flex flex-col gap-6 py-20">
-      <Breadcrumb className="relative pl-30">
+      <Breadcrumb className="relative pl-[8%]">
         <BreadcrumbList className="text-2xl">
           <BreadcrumbItem>
             <BreadcrumbLink href="/">Home</BreadcrumbLink>
