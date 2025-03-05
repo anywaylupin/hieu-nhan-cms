@@ -8,8 +8,7 @@ import {
 } from '@/components/ui';
 import { getPostById, getPostDetail } from '@/lib/notion';
 
-import { Article, Loader } from '@/components/common';
-import { Suspense } from 'react';
+import { Article } from '@/components/common';
 
 const Page = async ({ params }: BlogRequest) => {
   const { id } = await params;
@@ -35,9 +34,7 @@ const Page = async ({ params }: BlogRequest) => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <Suspense fallback={<Loader />}>
-        <Article>{post?.markdown.parent}</Article>
-      </Suspense>
+      <Article>{post?.markdown.parent}</Article>
     </main>
   );
 };

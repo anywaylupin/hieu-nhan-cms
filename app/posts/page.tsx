@@ -12,9 +12,7 @@ import { getPostDetail, getPostImage, getPostList } from '@/lib/notion';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Suspense } from 'react';
 import { formatDateLocalized } from '@/lib/utils';
-import { Loader } from '@/components/common';
 
 const Page = async () => {
   const posts = await getPostList();
@@ -36,40 +34,38 @@ const Page = async () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <Suspense fallback={<Loader />}>
-        <BentoGrid>
-          {posts.map((post) => {
-            const { id, title, description, date, images } = getPostDetail(post);
-            const image = images?.[0] ? getPostImage(images[0]) : null;
+      <BentoGrid>
+        {posts.map((post) => {
+          const { id, title, description, date, images } = getPostDetail(post);
+          const image = images?.[0] ? getPostImage(images[0]) : null;
 
-            return (
-              <Link key={id} href={`/posts/${id}`} className="block">
-                <BentoGridItem
-                  className="size-full"
-                  header={
-                    image && (
-                      <Image
-                        width={300}
-                        height={200}
-                        className="w-full rounded-sm"
-                        src={image.url}
-                        alt={image.alt || title}
-                      />
-                    )
-                  }
-                  title={title}
-                  description={
-                    <>
-                      <p>{description}</p>
-                      <time dateTime={new Date(date).toISOString()}>{formatDateLocalized(new Date(date))}</time>
-                    </>
-                  }
-                />
-              </Link>
-            );
-          })}
-        </BentoGrid>
-      </Suspense>
+          return (
+            <Link key={id} href={`/posts/${id}`} className="block">
+              <BentoGridItem
+                className="size-full"
+                header={
+                  image && (
+                    <Image
+                      width={300}
+                      height={200}
+                      className="w-full rounded-sm"
+                      src={image.url}
+                      alt={image.alt || title}
+                    />
+                  )
+                }
+                title={title}
+                description={
+                  <>
+                    <p>{description}</p>
+                    <time dateTime={new Date(date).toISOString()}>{formatDateLocalized(new Date(date))}</time>
+                  </>
+                }
+              />
+            </Link>
+          );
+        })}
+      </BentoGrid>
     </main>
   );
 };
