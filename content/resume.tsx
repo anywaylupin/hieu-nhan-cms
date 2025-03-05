@@ -1,8 +1,7 @@
-import { IconArticle, IconBrandGithub, IconBrandLinkedin, IconHome, IconMail } from '@/components/icons';
-
 const resume = {
   title: 'Hieu Nhan',
   description: 'My Personal Blog',
+  domain: 'https://hieunhan.vercel.app',
   hero: {
     heading: "I'm Nhan",
     subheading: (
@@ -73,26 +72,7 @@ const resume = {
           'Main allocating all processes of FBC, including recruiting new members, planning the AY club timeline, managing human resources and club activities, as well as coordinating stakeholders in implementing club projects. Successfully completed the two-semester plan covering gathering 22 members, co-organized 6 internal training workshops, 3 external training workshops (1 C level and 2 Manager level), and 3 field trips to Companies (Shopee, VNG, Timo), other collaboration with external clubs and Fulbright departments; and enhencing club’s bonding with internal activities. Leading coreteam to initiate a full transition process including engagement, recruitment, training and reflection to sustainably encourage the young leaders to be enhancing the club’s vision and mission.'
       }
     ]
-  },
-  domain: 'https://hieunhan.vercel.app',
-  projects: [
-    {
-      title: 'Example',
-      image: '/shopper.png',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. A quod reiciendis veniam dicta unde deserunt repudiandae delectus voluptatibus corrupti, ut eum autem quibusdam asperiores laborum harum hic laudantium fugiat voluptatem.',
-      tags: ['tag1', 'tag2', 'tag3'],
-      website: 'https://slp-dev.vercel.app',
-      highlight: '#0047CB'
-    }
-  ],
-  navbar: [
-    { title: 'Home', icon: <IconHome />, href: '/' },
-    { title: 'Blogs', icon: <IconArticle />, href: '/posts' },
-    { title: 'GitHub', icon: <IconBrandGithub />, href: 'https://github.com/anywaylupin' },
-    { title: 'Linkedin', icon: <IconBrandLinkedin />, href: 'https://www.linkedin.com/in/lupinnguyen' },
-    { title: 'Send Email', icon: <IconMail />, href: 'mailto:lupin.nguyen@outlook.com' }
-  ]
+  }
 };
 
 export default resume;
